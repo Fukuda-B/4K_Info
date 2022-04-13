@@ -9,19 +9,24 @@
 <body>
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript">
+        async function change_zoom() {
+            let res = await eel.return_zoom()();
+            document.getElementsByTagName('body')[0].style.zoom = res;
+        }
         async function update_disp() {
-            let res = await eel.main()();
-            console.log(res);
+            let res = await eel.main()(); // disp.py の main() 呼び出し
+            // console.log(res);
 
             weather.innerHTML = res[0];
             warn.innerHTML = res[1];
             kafun.innerHTML = res[2];
         }
         window.onload = function() {
+            change_zoom();
             let weather = document.getElementById('weather');
             let warn = document.getElementById('warn');
             let kafun = document.getElementById('kafun');
-            update_disp();
+            let update_interval = setInterval(update_disp(), 10*60*1000);
         }
     </script>
     <div id="weather_lap">
