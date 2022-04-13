@@ -2,7 +2,11 @@
  Let's digital signage get started
 
 ### usage
-`py main.py`
+```shell
+git clone https://github.com/Fukuda-B/4K_Info
+cd 4K_Info
+python py/main.py
+```
 
 ### memo
 |  |  |
