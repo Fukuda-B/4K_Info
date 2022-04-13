@@ -1,16 +1,20 @@
+from turtle import Turtle
 import requests
 from bs4 import BeautifulSoup
 
 class GetYahooInfo():
-    def __init__(self):
+    def __init__(self, area_id, parse):
         self.host = 'https://weather.yahoo.co.jp/weather/jp/5/'
-        self.area = '3210'
+        self.area = str(area_id)
+        self.parse = parse
 
     def Weather(self):
         url = self.host + self.area + ".html"
         r = requests.get(url)
         soup = BeautifulSoup(r.text, 'html.parser')
         rs = soup.find(class_='forecastCity')
+
+        if not self.parse: return rs # parse option == False
         rs = [i.strip() for i in rs.text.splitlines()]
         rs = [i for i in rs if i != ""]
         return {
@@ -49,6 +53,8 @@ class GetYahooInfo():
         r = requests.get(url)
         soup = BeautifulSoup(r.text, 'html.parser')
         rs = soup.find(class_='warnAdv_main')
+
+        if not self.parse: return rs # parse option == False
         rs = [i.strip() for i in rs.text.splitlines()]
         rs = [i for i in rs if i != ""]
         rs.pop(0)
@@ -62,6 +68,8 @@ class GetYahooInfo():
         r = requests.get(url)
         soup = BeautifulSoup(r.text, 'html.parser')
         rs = soup.find(class_='forecast')
+
+        if not self.parse: return rs # parse option == False
         rs = [i.strip() for i in rs.text.splitlines()]
         rs = [i for i in rs if i != ""]
         return {
@@ -77,7 +85,7 @@ class GetYahooInfo():
 
 
 if __name__ == "__main__":
-    get_info = GetYahooInfo()
+    get_info = GetYahooInfo(3210, True)
 
     wea = get_info.Weather()
     print(wea)

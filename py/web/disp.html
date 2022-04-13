@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://s.yimg.jp/images/weather/pc/v2/css/weatherCommon-2.3.6.css">
+    <title>4K Info</title>
+</head>
+<body>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        async function update_disp() {
+            let res = await eel.main()();
+            console.log(res);
+
+            weather.innerHTML = res[0];
+            warn.innerHTML = res[1];
+            kafun.innerHTML = res[2];
+        }
+        window.onload = function() {
+            let weather = document.getElementById('weather');
+            let warn = document.getElementById('warn');
+            let kafun = document.getElementById('kafun');
+            update_disp();
+        }
+    </script>
+    <div id="weather_lap">
+        <div id="weather" class="forecastCity"></div>
+    </div>
+
+    <div class="warnAdv target_modules">
+        <div class="warnAdv_main">
+            <div id="warn"></div>
+        </div>
+    </div>
+
+    <div class="pollenInduction target_modules">
+        <div class="pollenInduction_contents">
+            <div id="kafun"></div>
+        </div>
+    </div>
+</body>
+</html>
