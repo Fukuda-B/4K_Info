@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 class GetYahooInfo():
     def __init__(self, area_id, parse):
         self.host = 'https://weather.yahoo.co.jp/weather/jp/5/'
-        self.area = str(area_id)
-        self.parse = parse
+        self.area = str(area_id)    # 地域
+        self.parse = parse          # jsonパースするか
 
     def Weather(self):
         url = self.host + self.area + ".html"
@@ -23,7 +23,7 @@ class GetYahooInfo():
                     'weather': rs[1],    # 天気
                     'temp_high': rs[2],  # 最高気温
                     'temp_low': rs[3],   # 最低気温
-                    'fall': {           # 降水確率
+                    'fall': {            # 降水確率
                         '0-6': rs[10],
                         '6-12': rs[11],
                         '12-18': rs[12],
@@ -37,7 +37,7 @@ class GetYahooInfo():
                     'weather': rs[19],    # 天気
                     'temp_high': rs[20],  # 最高気温
                     'temp_low': rs[21],   # 最低気温
-                    'fall': {           # 降水確率
+                    'fall': {             # 降水確率
                         '0-6': rs[28],
                         '6-12': rs[29],
                         '12-18': rs[30],

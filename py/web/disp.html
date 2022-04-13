@@ -4,33 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://s.yimg.jp/images/weather/pc/v2/css/weatherCommon-2.3.6.css">
+    <style>
+        body {
+            width: 98%;
+            margin-left: 1%;
+        }
+        .warnAdv, .pollenInduction {
+            margin: 0;
+            margin-top: 5px;
+            border-radius: 0;
+        }
+        .pollenButton {
+            display: none;
+        }
+    </style>
     <title>4K Info</title>
 </head>
 <body>
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript">
-        async function settings() {
-            let res = await eel.return_zoom()();
-            document.getElementsByTagName('body')[0].style.zoom = res;
-        }
-        async function update_disp() {
+        async function update_disp(update_int) {
             let res = await eel.main()(); // disp.py の main() 呼び出し
             // console.log(res);
 
             weather.innerHTML = res[0];
             warn.innerHTML = res[1];
             kafun.innerHTML = res[2];
+            setTimeout(update_disp, update_int, update_int)
+        }
+        async function settings() {
+            let set_zoom = await eel.return_zoom()();
+            document.getElementsByTagName('body')[0].style.zoom = set_zoom;
+            let update_int = await eel.return_update()();
+            update_disp(update_int);
         }
         window.onload = function() {
-            settings();
             let weather = document.getElementById('weather');
             let warn = document.getElementById('warn');
             let kafun = document.getElementById('kafun');
-            let update_interval = setInterval(update_disp(), 10*60*1000);
+            settings();
         }
     </script>
     <div id="weather_lap">
         <div id="weather" class="forecastCity"></div>
+    </div>
+
+    <div class="pollenInduction target_modules">
+        <div class="pollenInduction_contents">
+            <div id="kafun"></div>
+        </div>
     </div>
 
     <div class="warnAdv target_modules">
@@ -39,10 +61,5 @@
         </div>
     </div>
 
-    <div class="pollenInduction target_modules">
-        <div class="pollenInduction_contents">
-            <div id="kafun"></div>
-        </div>
-    </div>
 </body>
 </html>

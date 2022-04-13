@@ -4,8 +4,8 @@
 ### usage
 ```shell
 git clone https://github.com/Fukuda-B/4K_Info
-cd 4K_Info
-python py/main.py
+cd 4K_Info/py
+python disp.py
 ```
 
 ### memo
