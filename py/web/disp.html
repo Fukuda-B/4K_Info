@@ -9,7 +9,7 @@
 <body>
     <script type="text/javascript" src="/eel.js"></script>
     <script type="text/javascript">
-        async function change_zoom() {
+        async function settings() {
             let res = await eel.return_zoom()();
             document.getElementsByTagName('body')[0].style.zoom = res;
         }
@@ -22,7 +22,7 @@
             kafun.innerHTML = res[2];
         }
         window.onload = function() {
-            change_zoom();
+            settings();
             let weather = document.getElementById('weather');
             let warn = document.getElementById('warn');
             let kafun = document.getElementById('kafun');

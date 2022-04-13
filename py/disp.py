@@ -2,7 +2,7 @@ import eel
 from numpy import size
 from main import GetYahooInfo
 
-zoom = 2.0 # ブラウザの拡大率 (default = 1.0)
+zoom = 1.5 # ブラウザの拡大率 (default = 1.0)
 
 @eel.expose
 def main():
