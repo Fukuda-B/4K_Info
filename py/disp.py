@@ -1,7 +1,7 @@
 import sys
 import platform
 import eel
-from main import GetYahooInfo
+from get_y_info import GetYahooInfo
 
 zoom = 1.5          # ブラウザの拡大率 (default = 1.0)
 area_id = 3210      # 地域

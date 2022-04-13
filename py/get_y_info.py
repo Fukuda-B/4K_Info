@@ -1,4 +1,3 @@
-from turtle import Turtle
 import requests
 from bs4 import BeautifulSoup
 
