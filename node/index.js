@@ -8,7 +8,7 @@ async function createWindow () {
     width: 1800,
     height: 1000,
     webPreferences: {
-      webviewTag: true
+      webviewTag: true,
     }
   })
   const blocker = await ElectronBlocker.fromLists(
@@ -22,8 +22,9 @@ async function createWindow () {
       read: async (...args) => readFileSync(...args),
       write: async (...args) => writeFileSync(...args),
     },
-  );
-  blocker.enableBlockingInSession(win.webContents.session);
+  ).then((blocker) => {
+    blocker.enableBlockingInSession(win.webContents.session);
+  })
   win.loadFile('index.html')
 }
 // app.allowRendererProcessPeuse = false;
