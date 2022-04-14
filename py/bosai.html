@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bosai</title>
+</head>
+<body>
+    <div>
+        <img id="map-estshindo" src="" alt="">
+    </div>
+</body>
+<script>
+    let map = document.getElementById('map-estshindo');
+    let host = 'http://www.kmoni.bosai.go.jp/data/map_img/RealTimeImg/jma_s/';
+    let old = '';
+    let ll = () => {
+        let td = new Date()
+        let year = td.getFullYear()
+        let month = ('0'+(1+td.getMonth())).slice(-2)
+        let date = ('0'+td.getDate()).slice(-2)
+        let hour = ('0'+td.getHours()).slice(-2)
+        let min = ('0'+td.getMinutes()).slice(-2)
+        let sec = ('0'+td.getSeconds()).slice(-2)
+        let dd = year+month+date;
+        let hms = hour+min+sec;
+        setTimeout(up, 1000, dd, hms); // delay
+    };
+    let up = (dd, hms) => {
+        let t_flag = true;
+        try {
+            map.src = host+dd+'/'+(dd+hms)+'.jma_s.gif';
+        } catch (e) {
+            t_flag = false;
+            map.src = old;
+        } finally {
+            if (t_flag) old = host+dd+'/'+(dd+hms)+'.jma_s.gif';
+        }
+    }
+    setInterval(ll, 1000); // interval
+</script>
+</html>
