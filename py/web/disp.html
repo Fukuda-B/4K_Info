@@ -30,6 +30,7 @@
     <script type="text/javascript">
         async function update_disp(update_int) {
             let res = await eel.main()(); // disp.py の main() 呼び出し
+            console.log('update');
             // console.log(res);
 
             weather.innerHTML = res[0];
