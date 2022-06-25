@@ -16,7 +16,7 @@ python disp.py
 
 ### example
 
-![./img0.jpg](./img0.jpg)
+![./img0.jpg](./img/img0.jpg)
 
 GetYahooInfo.Weather
 ```js

@@ -3,18 +3,22 @@ import platform
 import eel
 from get_y_info import GetYahooInfo
 
-zoom = 1.5          # ブラウザの拡大率 (default = 1.0)
+zoom = 2.0          # ブラウザの拡大率 (default = 1.0)
 area_id = 3210      # 地域
 update = 5*60*1000 # 更新間隔 (ms)
 
 @eel.expose
 def main():
     get_info = GetYahooInfo(area_id, False)
-    weather = str(get_info.Weather())
-    warn = str(get_info.Warn())
-    kafun = str(get_info.Kafun())
+    weather = str(get_info.weather())
+    warn = str(get_info.warn())
+    # kafun = str(get_info.kafun())
     # print([weather, warn, kafun])
-    return [weather, warn, kafun]
+    # return [weather, warn, kafun]
+
+    weather_week = str(get_info.weather_week())
+    return [weather, warn, weather_week]
+
 
 @eel.expose
 def return_zoom():

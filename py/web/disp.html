@@ -35,7 +35,8 @@
 
             weather.innerHTML = res[0];
             warn.innerHTML = res[1];
-            kafun.innerHTML = res[2];
+            // kafun.innerHTML = res[2];
+            weather_week.innerHTML = res[2];
             setTimeout(update_disp, update_int, update_int)
         }
         async function settings() {
@@ -45,9 +46,12 @@
             update_disp(update_int);
         }
         window.onload = function() {
+            let yjw_table = document.getElementsByClassName('yjw_table'); // 週間天気のテーブル
+            console.log(yjw_table);
             let weather = document.getElementById('weather');
             let warn = document.getElementById('warn');
-            let kafun = document.getElementById('kafun');
+            // let kafun = document.getElementById('kafun');
+            let weather_week = document.getElementById('weather_week');
             settings();
         }
     </script>
@@ -55,16 +59,19 @@
         <div id="weather" class="forecastCity"></div>
     </div>
 
-    <div class="pollenInduction target_modules">
+    <!-- <div class="pollenInduction target_modules">
         <div class="pollenInduction_contents">
             <div id="kafun"></div>
         </div>
-    </div>
+    </div> -->
 
     <div class="warnAdv target_modules">
         <div class="warnAdv_main">
             <div id="warn"></div>
         </div>
+    </div>
+
+    <div id="weather_week">
     </div>
 
 </body>
